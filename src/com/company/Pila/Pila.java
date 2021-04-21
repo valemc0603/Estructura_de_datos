@@ -1,5 +1,7 @@
 package com.company.Pila;
 
+import com.company.Dato;
+
 public class Pila {
     private NodoDatoPila top = null;
 
@@ -7,7 +9,8 @@ public class Pila {
         return top == null;
     }
 
-    public void push(NodoDatoPila nuevo_nodo){
+    public void push(String nombre){
+        NodoDatoPila nuevo_nodo = new NodoDatoPila(new Dato(nombre));
         nuevo_nodo.nodo_abajo = top;
         top = nuevo_nodo;
     }
