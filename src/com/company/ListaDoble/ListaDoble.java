@@ -19,7 +19,8 @@ public class ListaDoble {
     }
 
 
-    public void agregar(Dato nuevo_dato) {
+    public void agregar(Dato nuevo_dato)
+    {
 
         NodoDatoLD nodo_nuevo = new NodoDatoLD(nuevo_dato);
 
@@ -36,11 +37,13 @@ public class ListaDoble {
         }
     }
 
-    public boolean vacia() {
+    public boolean vacia()
+    {
         return cabeza == null;
     }
 
-    public int tamano() {
+    public int tamano()
+    {
         int tamano = 0;
 
         if (!vacia()) {
@@ -55,7 +58,8 @@ public class ListaDoble {
         return tamano;
     }
 
-    public NodoDatoLD buscar(String nombre) {
+    public NodoDatoLD buscar(String nombre)
+    {
         NodoDatoLD encontrado = null;
 
         if (!vacia()) {
@@ -71,7 +75,8 @@ public class ListaDoble {
         return encontrado;
     }
 
-    public String[] toArray() {
+    public String[] toArray()
+    {
         String[] datos = new String[0];
         int cantidad = tamano();
         if(cantidad>0){
