@@ -1,20 +1,38 @@
 package com.company.ListaDoble;
 
+import com.company.Dato;
+import com.company.Pila.NodoDatoPila;
+import com.company.Pila.Pila;
+
 public class ListaDoble {
 
     NodoDatoLD cabeza;
 
-    public void agregar(NodoDatoLD nuevo) {
+    public void agregar_recursivo(Pila nuevo_nodo)
+    {
+        NodoDatoPila nodo_nuevo = nuevo_nodo.pop();
+        if(nodo_nuevo != null)
+        {
+            agregar(nodo_nuevo.informacion.nombre);
+            agregar_recursivo(nuevo_nodo);
+        }
+    }
+
+
+    public void agregar(String nuevo) {
+
+        NodoDatoLD nodo_nuevo = new NodoDatoLD(new Dato(nuevo));
+
         if (vacia()) {
-            cabeza = nuevo;
+            cabeza = nodo_nuevo;
         } else {
             NodoDatoLD temp = cabeza;
             while (temp.nodo_siguiente != null) {
                 temp = temp.nodo_siguiente;
             }
-            temp.nodo_siguiente = nuevo;
-            nuevo.nodo_siguiente = null;
-            nuevo.nodo_anterior = temp;
+            temp.nodo_siguiente = nodo_nuevo;
+            nodo_nuevo.nodo_siguiente = null;
+            nodo_nuevo.nodo_anterior = temp;
         }
     }
 
@@ -75,5 +93,18 @@ public class ListaDoble {
         return borrado;
     }
 
-}
+    public String[] aArregloString() {
+        String[] contactos = new String[0];
+        int cantidad = cantidad();
+        if(cantidad>0){
+            contactos = new String[cantidad];
+            NodoDatoLD tmp = cabeza;
+            for(int i=0; i<cantidad; i++){
+                contactos[i] = tmp.informacion.nombre;
+                tmp = tmp.nodo_siguiente;
+            }
+        }
+        return contactos;
+    }
 
+}

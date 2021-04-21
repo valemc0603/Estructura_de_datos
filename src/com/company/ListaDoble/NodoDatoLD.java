@@ -7,9 +7,7 @@ public class NodoDatoLD {
     public NodoDatoLD nodo_siguiente;
     public Dato informacion;
 
-    public NodoDatoLD(NodoDatoLD nodo_anterior, NodoDatoLD nodo_siguiente, Dato informacion) {
-        this.nodo_anterior = nodo_anterior;
-        this.nodo_siguiente = nodo_siguiente;
+    public NodoDatoLD(Dato informacion) {
         this.informacion = informacion;
     }
 }

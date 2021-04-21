@@ -1,7 +1,11 @@
 package com.company.Pila;
 
+import com.company.Dato;
+
 public class Pila {
     private NodoDatoPila top = null;
+
+
 
     public boolean vacio(){
         return top == null;
