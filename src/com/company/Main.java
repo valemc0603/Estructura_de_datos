@@ -20,6 +20,6 @@ public class Main {
 
         lista.agregar_recursivo(pila);
 
-        System.out.println(Arrays.toString(lista.aArregloString()));
+        System.out.println(Arrays.toString(lista.toArray()));
     }
 }
