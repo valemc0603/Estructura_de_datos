@@ -10,4 +10,5 @@ public class NodoDatoLD {
     public NodoDatoLD(Dato informacion) {
         this.informacion = informacion;
     }
+
 }

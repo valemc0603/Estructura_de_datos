@@ -1,14 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package estructura.de.datos;
 
+import estructura.de.datos.Arbol.Arbol;
+import estructura.de.datos.GUI_arbol.Controlador;
+import estructura.de.datos.GUI_arbol.Dibujo;
 import estructura.de.datos.ListaDoble.ListaDoble;
 import estructura.de.datos.ListaDoble.NodoDatoLD;
 import estructura.de.datos.Pila.NodoDatoPila;
 import estructura.de.datos.Pila.Pila;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -18,11 +19,21 @@ public class GUI extends javax.swing.JFrame {
 
     private ListaDoble Ares_LD = new ListaDoble();
     private Pila Ares_Pila = new Pila();
+    private Arbol Ares_Arbol = new Arbol();
+    Dibujo dibujo = new Dibujo();
+    Controlador controlador_dibujo = new Controlador(dibujo, Ares_Arbol);
+    JFrame ventana = new JFrame();
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
+        Ares_Arbol.insertar(new Dato("Cancion1", "Jona", 2005));
+        Ares_Arbol.insertar(new Dato("Cancion2", "Morales", 2001));
+        Ares_Arbol.insertar(new Dato("Cancion3", "Nara", 1998));
+        Ares_Arbol.insertar(new Dato("Cancion2", "Morales", 2004));
+        Ares_Arbol.insertar(new Dato("Cancion3", "Nara", 2007));
+        Ares_Arbol.insertar(new Dato("Cancion3", "Nara", 2006));
     }
     
     private void actualizar_matriz_pila()
@@ -68,21 +79,21 @@ public class GUI extends javax.swing.JFrame {
             String[] datos = Ares_LD.toString().split(",");
             String matriz[][] = new String[datos.length][3];
         
-        for (int i = 0; i < matriz.length; i++) {
-            matriz[i][0] = datos[i].split("-")[0];
-            matriz[i][1] = datos[i].split("-")[1];
-            matriz[i][2] = datos[i].split("-")[2];
+            for (int i = 0; i < matriz.length; i++) {
+                matriz[i][0] = datos[i].split("-")[0];
+                matriz[i][1] = datos[i].split("-")[1];
+                matriz[i][2] = datos[i].split("-")[2];
 
-        }
+            }
         
-        tabla_LD.setModel(
-                new javax.swing.table.DefaultTableModel(
-                matriz,
-                new String[]{
-                    "Nombre de la canción:", "Nombre del cantante:", "Año de lanzamiento:"
-                }
-        ));
-        jScrollPane3.setViewportView(tabla_LD);
+            tabla_LD.setModel(
+                    new javax.swing.table.DefaultTableModel(
+                    matriz,
+                    new String[]{
+                        "Nombre de la canción:", "Nombre del cantante:", "Año de lanzamiento:"
+                    }
+            ));
+            jScrollPane3.setViewportView(tabla_LD);
         }catch(NullPointerException e){
             String[][] matriz = new String[0][0]; 
             tabla_LD.setModel(
@@ -106,45 +117,32 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         Agregar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
         Mover = new javax.swing.JButton();
-        Buscar = new javax.swing.JButton();
-        Nombre_artista = new javax.swing.JLabel();
-        anno = new javax.swing.JLabel();
-        Buscar_cancion = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1Nombre_cancion = new javax.swing.JTextField();
-        jTextFieldNombre_artista = new javax.swing.JTextField();
-        jTextFieldAnnocancion = new javax.swing.JTextField();
-        jTextFieldBuscar = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        Buscar_Lista_Agregar_Arbol = new javax.swing.JButton();
+        Ensena_texto_Nombre_artista = new javax.swing.JLabel();
+        Ensena_texto_anno = new javax.swing.JLabel();
+        Ensena_texto_Buscar_cancion = new javax.swing.JLabel();
+        Logo = new javax.swing.JLabel();
+        Nombre_cancion = new javax.swing.JTextField();
+        Nombre_artista = new javax.swing.JTextField();
+        Annocancion = new javax.swing.JTextField();
+        Buscar = new javax.swing.JTextField();
+        Ensena_texto_nombre_cancion = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_pila = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabla_LD = new javax.swing.JTable();
         Nombre_artista1 = new javax.swing.JLabel();
         Nombre_artista2 = new javax.swing.JLabel();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        Mostrar_Arbol = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Agregar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        Agregar.setText("Agregar");
+        Agregar.setText("Agregar a Pila");
         Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AgregarActionPerformed(evt);
@@ -152,7 +150,7 @@ public class GUI extends javax.swing.JFrame {
         });
 
         Eliminar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        Eliminar.setText("Eliminar");
+        Eliminar.setText("Eliminar de Pila");
         Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EliminarActionPerformed(evt);
@@ -160,75 +158,68 @@ public class GUI extends javax.swing.JFrame {
         });
 
         Mover.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        Mover.setText("Mover");
+        Mover.setText("Mover a Lista");
         Mover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MoverActionPerformed(evt);
             }
         });
 
-        Buscar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        Buscar.setText("Buscar");
+        Buscar_Lista_Agregar_Arbol.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        Buscar_Lista_Agregar_Arbol.setText("Buscar en Lista y agregar a Arbol");
+        Buscar_Lista_Agregar_Arbol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Buscar_Lista_Agregar_ArbolActionPerformed(evt);
+            }
+        });
+
+        Ensena_texto_Nombre_artista.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+        Ensena_texto_Nombre_artista.setText("Nombre del artista:");
+
+        Ensena_texto_anno.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+        Ensena_texto_anno.setText("Año de la cancion:");
+
+        Ensena_texto_Buscar_cancion.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+        Ensena_texto_Buscar_cancion.setText("Buscar cancion:");
+
+        Logo.setFont(new java.awt.Font("Palatino Linotype", 1, 36)); // NOI18N
+        Logo.setForeground(new java.awt.Color(255, 255, 255));
+        Logo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ares.png"))); // NOI18N
+        Logo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        Logo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+
+        Nombre_cancion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nombre_cancionActionPerformed(evt);
+            }
+        });
+
         Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BuscarActionPerformed(evt);
             }
         });
 
-        Nombre_artista.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        Nombre_artista.setText("Nombre del artista:");
-
-        anno.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        anno.setText("Año de la cancion:");
-
-        Buscar_cancion.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        Buscar_cancion.setText("Buscar cancion:");
-
-        jLabel2.setFont(new java.awt.Font("Palatino Linotype", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ares.png"))); // NOI18N
-        jLabel2.setText("Ares");
-        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-
-        jTextField1Nombre_cancion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1Nombre_cancionActionPerformed(evt);
-            }
-        });
-
-        jTextFieldBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldBuscarActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        jLabel1.setText("Nombre de la cancion:");
+        Ensena_texto_nombre_cancion.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+        Ensena_texto_nombre_cancion.setText("Nombre de la cancion:");
 
         tabla_pila.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane2.setViewportView(tabla_pila);
 
         tabla_LD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane3.setViewportView(tabla_LD);
@@ -239,6 +230,18 @@ public class GUI extends javax.swing.JFrame {
         Nombre_artista2.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
         Nombre_artista2.setText("Pila");
 
+        Mostrar_Arbol.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        Mostrar_Arbol.setText("Mostrar Arbol");
+        Mostrar_Arbol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Mostrar_ArbolActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("ARES");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -246,99 +249,94 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Nombre_artista1)
+                            .addComponent(Nombre_artista2)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(Eliminar)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Ensena_texto_nombre_cancion)
+                                    .addComponent(Ensena_texto_Nombre_artista)
+                                    .addComponent(Ensena_texto_anno))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Mover, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jTextFieldBuscar))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Nombre_artista1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Nombre_artista2))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(91, 91, 91)
-                            .addComponent(jLabel2))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Nombre_cancion)
+                                    .addComponent(Nombre_artista)
+                                    .addComponent(Annocancion, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(Buscar_cancion)
-                                    .addGap(231, 310, Short.MAX_VALUE))
+                                    .addComponent(Ensena_texto_Buscar_cancion)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(Nombre_artista)
-                                        .addComponent(anno))
+                                    .addComponent(Buscar_Lista_Agregar_Arbol)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Mostrar_Arbol))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(Agregar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(Eliminar)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTextFieldNombre_artista, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                        .addComponent(jTextFieldAnnocancion, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField1Nombre_cancion))
-                                    .addGap(0, 0, Short.MAX_VALUE))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                .addContainerGap(46, Short.MAX_VALUE))
+                                    .addComponent(Mover, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1Nombre_cancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Nombre_artista)
-                    .addComponent(jTextFieldNombre_artista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Nombre_cancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Ensena_texto_nombre_cancion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldAnnocancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(anno))
-                .addGap(18, 18, 18)
+                    .addComponent(Ensena_texto_Nombre_artista)
+                    .addComponent(Nombre_artista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Annocancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Ensena_texto_anno))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Agregar)
                     .addComponent(Eliminar)
                     .addComponent(Mover))
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Buscar_cancion)
-                    .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Buscar)
-                .addGap(18, 18, 18)
+                    .addComponent(Ensena_texto_Buscar_cancion)
+                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Buscar_Lista_Agregar_Arbol)
+                    .addComponent(Mostrar_Arbol))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Nombre_artista2)
                 .addGap(1, 1, 1)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addGap(18, 18, 18)
                 .addComponent(Nombre_artista1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        String nombre_cancion = jTextField1Nombre_cancion.getText();
-        String nombre_artista = jTextFieldNombre_artista.getText();
-        int anno = Integer.parseInt(jTextFieldAnnocancion.getText());
+        String nombre_cancion = Nombre_cancion.getText();
+        String nombre_artista = Nombre_artista.getText();
+        int anno = Integer.parseInt(Annocancion.getText());
         
         NodoDatoPila nuevoNodoDato = new NodoDatoPila(new Dato(nombre_cancion, nombre_artista, anno));
         
@@ -355,13 +353,13 @@ public class GUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_EliminarActionPerformed
 
-    private void jTextField1Nombre_cancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1Nombre_cancionActionPerformed
+    private void Nombre_cancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nombre_cancionActionPerformed
 
-    }//GEN-LAST:event_jTextField1Nombre_cancionActionPerformed
+    }//GEN-LAST:event_Nombre_cancionActionPerformed
 
-    private void jTextFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldBuscarActionPerformed
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        
+    }//GEN-LAST:event_BuscarActionPerformed
 
     private void MoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoverActionPerformed
         
@@ -370,12 +368,27 @@ public class GUI extends javax.swing.JFrame {
         actualizar_matriz_LD();
     }//GEN-LAST:event_MoverActionPerformed
 
-    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        
-        Dato dato_encontrado = Ares_LD.buscar(jTextFieldBuscar.getText());
-        
-        
-    }//GEN-LAST:event_BuscarActionPerformed
+    private void Buscar_Lista_Agregar_ArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_Lista_Agregar_ArbolActionPerformed
+        try{
+            Dato dato_encontrado = Ares_LD.borrar(Buscar.getText());
+            actualizar_matriz_LD();
+            Ares_Arbol.insertar(dato_encontrado);
+            JOptionPane.showMessageDialog(null, "Agregado con exito al Arbol" + 
+                    "\nNombre cancion: " + dato_encontrado.nombre_cancion + 
+                    "\nNombre artista: " + dato_encontrado.nombre_artista + 
+                    "\nAño: " + dato_encontrado.anno);
+        }
+        catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Cancion no encontrada");
+        }
+    }//GEN-LAST:event_Buscar_Lista_Agregar_ArbolActionPerformed
+
+    private void Mostrar_ArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Mostrar_ArbolActionPerformed
+        controlador_dibujo.iniciar();
+        ventana.getContentPane().add(dibujo);
+        ventana.setSize(1920, 1080);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_Mostrar_ArbolActionPerformed
 
     /**
      * @param args the command line arguments
@@ -414,24 +427,24 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
-    private javax.swing.JButton Buscar;
-    private javax.swing.JLabel Buscar_cancion;
+    private javax.swing.JTextField Annocancion;
+    private javax.swing.JTextField Buscar;
+    private javax.swing.JButton Buscar_Lista_Agregar_Arbol;
     private javax.swing.JButton Eliminar;
+    private javax.swing.JLabel Ensena_texto_Buscar_cancion;
+    private javax.swing.JLabel Ensena_texto_Nombre_artista;
+    private javax.swing.JLabel Ensena_texto_anno;
+    private javax.swing.JLabel Ensena_texto_nombre_cancion;
+    private javax.swing.JLabel Logo;
+    private javax.swing.JButton Mostrar_Arbol;
     private javax.swing.JButton Mover;
-    private javax.swing.JLabel Nombre_artista;
+    private javax.swing.JTextField Nombre_artista;
     private javax.swing.JLabel Nombre_artista1;
     private javax.swing.JLabel Nombre_artista2;
-    private javax.swing.JLabel anno;
+    private javax.swing.JTextField Nombre_cancion;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1Nombre_cancion;
-    private javax.swing.JTextField jTextFieldAnnocancion;
-    private javax.swing.JTextField jTextFieldBuscar;
-    private javax.swing.JTextField jTextFieldNombre_artista;
     private javax.swing.JTable tabla_LD;
     private javax.swing.JTable tabla_pila;
     // End of variables declaration//GEN-END:variables

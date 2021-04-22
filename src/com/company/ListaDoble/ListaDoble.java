@@ -8,13 +8,13 @@ public class ListaDoble {
 
     NodoDatoLD cabeza;
 
-    public void agregar_recursivo(Pila nuevo_nodo)
+    public void agregar_recursivo(Pila pila)
     {
-        NodoDatoPila nodo_nuevo = nuevo_nodo.pop();
+        NodoDatoPila nodo_nuevo = pila.pop();
         if(nodo_nuevo != null)
         {
             agregar(nodo_nuevo.informacion);
-            agregar_recursivo(nuevo_nodo);
+            agregar_recursivo(pila);
         }
     }
 
@@ -58,14 +58,14 @@ public class ListaDoble {
         return tamano;
     }
 
-    public NodoDatoLD buscar(String nombre)
+    public NodoDatoLD buscar(String nombre_cancion)
     {
         NodoDatoLD encontrado = null;
 
-        if (!vacia()) {
+        if (!vacia()){
             NodoDatoLD temp = cabeza;
             while (temp != null) {
-                if (temp.informacion.nombre.equals(nombre)) {
+                if (temp.informacion.nombre_cancion.equals(nombre_cancion.strip())) {
                     encontrado = temp;
                     break;
                 }
@@ -75,17 +75,40 @@ public class ListaDoble {
         return encontrado;
     }
 
-    public String[] toArray()
+    public Dato borrar(String nombre){
+        NodoDatoLD nodo_a_borrar = buscar(nombre);
+        if(nodo_a_borrar != null){
+            if(nodo_a_borrar.nodo_anterior != null){
+                nodo_a_borrar.nodo_anterior.nodo_siguiente = nodo_a_borrar.nodo_siguiente;
+                if(nodo_a_borrar.nodo_siguiente != null){
+                    nodo_a_borrar.nodo_siguiente.nodo_anterior = nodo_a_borrar.nodo_anterior;
+                }
+            }else{
+                cabeza = cabeza.nodo_siguiente;
+                if(cabeza != null){
+                    cabeza.nodo_anterior = null;
+                }
+            }
+        }
+
+        return nodo_a_borrar.informacion;
+    }
+
+    @Override
+    public String toString()
     {
-        String[] datos = new String[0];
+        String datos = "";
         int cantidad = tamano();
         if(cantidad>0){
-            datos = new String[cantidad];
             NodoDatoLD temp = cabeza;
             for(int i=0; i<cantidad; i++){
-                datos[i] = temp.informacion.nombre;
+                datos += temp.informacion.nombre_cancion +"-" + temp.informacion.nombre_artista + "-" + temp.informacion.anno + " ,";
                 temp = temp.nodo_siguiente;
             }
+        }
+        else
+        {
+            return null;
         }
         return datos;
     }

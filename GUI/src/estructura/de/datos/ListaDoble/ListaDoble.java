@@ -58,7 +58,7 @@ public class ListaDoble {
         return tamano;
     }
 
-    public Dato buscar(String nombre_cancion)
+    public NodoDatoLD buscar(String nombre_cancion)
     {
         NodoDatoLD encontrado = null;
 
@@ -72,7 +72,26 @@ public class ListaDoble {
                 temp = temp.nodo_siguiente;
             }
         }
-        return encontrado.informacion;
+        return encontrado;
+    }
+
+    public Dato borrar(String nombre){
+        NodoDatoLD nodo_a_borrar = buscar(nombre);
+        if(nodo_a_borrar != null){
+            if(nodo_a_borrar.nodo_anterior != null){
+                nodo_a_borrar.nodo_anterior.nodo_siguiente = nodo_a_borrar.nodo_siguiente;
+                if(nodo_a_borrar.nodo_siguiente != null){
+                    nodo_a_borrar.nodo_siguiente.nodo_anterior = nodo_a_borrar.nodo_anterior;
+                }
+            }else{
+                cabeza = cabeza.nodo_siguiente;
+                if(cabeza != null){
+                    cabeza.nodo_anterior = null;
+                }
+            }
+        }
+
+        return nodo_a_borrar.informacion;
     }
 
     @Override

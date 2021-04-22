@@ -1,8 +1,5 @@
 package estructura.de.datos.Pila;
 
-import estructura.de.datos.Dato;
-import estructura.de.datos.ListaDoble.NodoDatoLD;
-
 public class Pila {
     private NodoDatoPila top = null;
 

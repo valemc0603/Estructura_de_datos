@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package estructura.de.datos;
 
 import estructura.de.datos.Dato;
@@ -15,7 +10,7 @@ import java.util.Arrays;
 public class Main{
 
     public static void main(String[] args) {
-
-
+        GUI gui = new GUI();
+        gui.main(new String[0]);
     }
 }
