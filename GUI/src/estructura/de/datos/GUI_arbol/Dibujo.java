@@ -11,21 +11,28 @@ public class Dibujo extends JPanel {
     public static final int RADIO = DIAMETRO / 2;
     public static final int ANCHO = 50;
 
-    public void setObjArbol(Arbol objArbol) {
+    public void setObjArbol(Arbol objArbol) 
+    {
         this.objArbol = objArbol;
         repaint();
     }
 
     @Override
-    public void paint(Graphics g) {
-        super.paint(g); //To change body of generated methods, choose Tools | Templates.
+    public void paint(Graphics g) 
+    {
+        super.paint(g); 
         pintar(g, getWidth() / 2, 20, objArbol.raiz);
     }
     
-    private void pintar(Graphics g, int x, int y, NodoArbol n) {
+    private void pintar(Graphics g, int x, int y, NodoArbol n) 
+    {
         if (n == null)
-        {}
-        else {
+        {
+            
+        }
+        
+        else 
+        {
             int EXTRA = n.nodosCompletos(n) * 60;
             g.drawOval(x, y, DIAMETRO, DIAMETRO);
             g.drawString(n.toString(), x - 50, y);

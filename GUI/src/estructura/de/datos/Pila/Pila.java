@@ -23,7 +23,8 @@ public class Pila {
         return top_viejo;
     }
     
-    public String mostrar(){
+    public String mostrar()
+    {
         String resultado="";
         if(vacio())
         {
@@ -32,7 +33,6 @@ public class Pila {
         else
         {
             NodoDatoPila actual = top;
-            //Recorrer la pila es moverse de nodo en nodo hasta el primero que se inserto
             while(actual != null)
             {
                 resultado += actual.informacion.nombre_cancion +"-" + actual.informacion.nombre_artista + "-" + actual.informacion.anno + " ,";

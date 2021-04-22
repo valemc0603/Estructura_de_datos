@@ -24,16 +24,20 @@ public class ListaDoble {
 
         NodoDatoLD nodo_nuevo = new NodoDatoLD(nuevo_dato);
 
-        if (vacia()) {
+        if (vacia()) 
+        {
             cabeza = nodo_nuevo;
-        } else {
-            NodoDatoLD temp = cabeza;
-            while (temp.nodo_siguiente != null) {
-                temp = temp.nodo_siguiente;
+        } 
+        else 
+        {
+            NodoDatoLD puntero_temp = cabeza;
+            while (puntero_temp.nodo_siguiente != null) 
+            {
+                puntero_temp = puntero_temp.nodo_siguiente;
             }
-            temp.nodo_siguiente = nodo_nuevo;
+            puntero_temp.nodo_siguiente = nodo_nuevo;
             nodo_nuevo.nodo_siguiente = null;
-            nodo_nuevo.nodo_anterior = temp;
+            nodo_nuevo.nodo_anterior = puntero_temp;
         }
     }
 
@@ -46,10 +50,12 @@ public class ListaDoble {
     {
         int tamano = 0;
 
-        if (!vacia()) {
+        if (!vacia()) 
+        {
             NodoDatoLD temp = cabeza;
             tamano = 1;
-            while (temp.nodo_siguiente != null) {
+            while (temp.nodo_siguiente != null) 
+            {
                 tamano++;
                 temp = temp.nodo_siguiente;
             }
@@ -62,10 +68,13 @@ public class ListaDoble {
     {
         NodoDatoLD encontrado = null;
 
-        if (!vacia()){
+        if (!vacia())
+        {
             NodoDatoLD temp = cabeza;
-            while (temp != null) {
-                if (temp.informacion.nombre_cancion.equals(nombre_cancion.strip())) {
+            while (temp != null) 
+            {
+                if (temp.informacion.nombre_cancion.equals(nombre_cancion.strip())) 
+                {
                     encontrado = temp;
                     break;
                 }
@@ -75,17 +84,24 @@ public class ListaDoble {
         return encontrado;
     }
 
-    public Dato borrar(String nombre){
+    public Dato borrar(String nombre)
+    {
         NodoDatoLD nodo_a_borrar = buscar(nombre);
-        if(nodo_a_borrar != null){
-            if(nodo_a_borrar.nodo_anterior != null){
+        if(nodo_a_borrar != null)
+        {
+            if(nodo_a_borrar.nodo_anterior != null)
+                {
                 nodo_a_borrar.nodo_anterior.nodo_siguiente = nodo_a_borrar.nodo_siguiente;
-                if(nodo_a_borrar.nodo_siguiente != null){
+                if(nodo_a_borrar.nodo_siguiente != null)
+                {
                     nodo_a_borrar.nodo_siguiente.nodo_anterior = nodo_a_borrar.nodo_anterior;
                 }
-            }else{
+            }
+            else
+            {
                 cabeza = cabeza.nodo_siguiente;
-                if(cabeza != null){
+                if(cabeza != null)
+                {
                     cabeza.nodo_anterior = null;
                 }
             }
@@ -99,7 +115,8 @@ public class ListaDoble {
     {
         String datos = "";
         int cantidad = tamano();
-        if(cantidad>0){
+        if(cantidad>0)
+            {
             NodoDatoLD temp = cabeza;
             for(int i=0; i<cantidad; i++){
                 datos += temp.informacion.nombre_cancion +"-" + temp.informacion.nombre_artista + "-" + temp.informacion.anno + " ,";

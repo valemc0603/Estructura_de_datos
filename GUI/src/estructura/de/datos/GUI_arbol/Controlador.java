@@ -6,12 +6,14 @@ public class Controlador {
     private Dibujo objLienzo;
     private Arbol objArbol;
 
-    public Controlador(Dibujo objLienzo, Arbol objArbol) {
+    public Controlador(Dibujo objLienzo, Arbol objArbol) 
+    {
         this.objLienzo = objLienzo;
         this.objArbol = objArbol;
     }
     
-    public void iniciar() {
+    public void iniciar() 
+    {
         objLienzo.setObjArbol(objArbol);
     }
 }

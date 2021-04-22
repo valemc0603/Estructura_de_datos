@@ -9,7 +9,8 @@ public class NodoArbol {
     public NodoArbol derecho;
     public Dato informacion;
 
-    public NodoArbol(Dato informacion) {
+    public NodoArbol(Dato informacion) 
+    {
         this.informacion = informacion;
     }
 

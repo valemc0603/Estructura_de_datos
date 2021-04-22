@@ -6,11 +6,13 @@ public class Arbol {
 
     public NodoArbol raiz;
 
-    public boolean vacio() {
+    public boolean vacio() 
+    {
         return raiz == null;
     }
 
-    public void insertar(Dato dato) {
+    public void insertar(Dato dato) 
+    {
         NodoArbol nuevo_nodo = new NodoArbol(dato);
         if (vacio())
         {
@@ -22,8 +24,10 @@ public class Arbol {
         }
     }
 
-    private void insertarRecursivo(NodoArbol subraiz, NodoArbol nuevo_nodo) {
-        if (nuevo_nodo.informacion.anno <= subraiz.informacion.anno) {
+    private void insertarRecursivo(NodoArbol subraiz, NodoArbol nuevo_nodo) 
+    {
+        if (nuevo_nodo.informacion.anno <= subraiz.informacion.anno) 
+        {
             if (subraiz.izquierdo == null)
             {
                 subraiz.izquierdo = nuevo_nodo;
@@ -45,22 +49,25 @@ public class Arbol {
         }
     }
 
-    public String inOrden() {
+    public String Usar_mostrar_Orden() 
+    {
         if (vacio())
         {
             return "El Árbol está vacío.";
         }
         else
         {
-            return inOrdenRecursivo(raiz);
+            return Mostrar_Orden_Recursivo(raiz);
         }
     }
 
-    private String inOrdenRecursivo(NodoArbol subRaiz) {
-        if (subRaiz != null) {
-            return inOrdenRecursivo(subRaiz.izquierdo) + subRaiz.informacion.nombre_cancion + " - " +
-                    subRaiz.informacion.nombre_artista + " - " + subRaiz.informacion.anno + " ," +
-                    inOrdenRecursivo(subRaiz.derecho);
+    private String Mostrar_Orden_Recursivo(NodoArbol subraiz) 
+    {
+        if (subraiz != null)
+        {
+            return Mostrar_Orden_Recursivo(subraiz.izquierdo) + subraiz.informacion.nombre_cancion + " - " +
+                    subraiz.informacion.nombre_artista + " - " + subraiz.informacion.anno + " ," +
+                    Mostrar_Orden_Recursivo(subraiz.derecho);
         }
         else
         {
