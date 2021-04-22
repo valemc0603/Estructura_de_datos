@@ -28,12 +28,12 @@ public class GUI extends javax.swing.JFrame {
      */
     public GUI() {
         initComponents();
-        Ares_Arbol.insertar(new Dato("Cancion1", "Jona", 2005));
-        Ares_Arbol.insertar(new Dato("Cancion2", "Morales", 2001));
-        Ares_Arbol.insertar(new Dato("Cancion3", "Nara", 1998));
-        Ares_Arbol.insertar(new Dato("Cancion2", "Morales", 2004));
-        Ares_Arbol.insertar(new Dato("Cancion3", "Nara", 2007));
-        Ares_Arbol.insertar(new Dato("Cancion3", "Nara", 2006));
+        Ares_Arbol.insertar(new NodoDatoLD(new Dato("Cancion1", "Jona", 2005)));
+        Ares_Arbol.insertar(new NodoDatoLD(new Dato("Cancion2", "Morales", 2001)));
+        Ares_Arbol.insertar(new NodoDatoLD(new Dato("Cancion3", "Nara", 1998)));
+        Ares_Arbol.insertar(new NodoDatoLD(new Dato("Cancion2", "Morales", 2004)));
+        Ares_Arbol.insertar(new NodoDatoLD(new Dato("Cancion3", "Nara", 2007)));
+        Ares_Arbol.insertar(new NodoDatoLD(new Dato("Cancion3", "Nara", 2006)));
     }
     
     private void actualizar_matriz_pila()
@@ -370,13 +370,13 @@ public class GUI extends javax.swing.JFrame {
 
     private void Buscar_Lista_Agregar_ArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_Lista_Agregar_ArbolActionPerformed
         try{
-            Dato dato_encontrado = Ares_LD.borrar(Buscar.getText());
+            NodoDatoLD dato_encontrado = new NodoDatoLD(Ares_LD.borrar(Buscar.getText()));
             actualizar_matriz_LD();
             Ares_Arbol.insertar(dato_encontrado);
             JOptionPane.showMessageDialog(null, "Agregado con exito al Arbol" + 
-                    "\nNombre cancion: " + dato_encontrado.nombre_cancion + 
-                    "\nNombre artista: " + dato_encontrado.nombre_artista + 
-                    "\nAño: " + dato_encontrado.anno);
+                    "\nNombre cancion: " + dato_encontrado.informacion.nombre_cancion + 
+                    "\nNombre artista: " + dato_encontrado.informacion.nombre_artista + 
+                    "\nAño: " + dato_encontrado.informacion.anno);
         }
         catch(NullPointerException e){
             JOptionPane.showMessageDialog(null, "Cancion no encontrada");

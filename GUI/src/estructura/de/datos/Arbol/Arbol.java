@@ -1,6 +1,6 @@
 package estructura.de.datos.Arbol;
 
-import estructura.de.datos.Dato;
+import estructura.de.datos.ListaDoble.NodoDatoLD;
 
 public class Arbol {
 
@@ -11,9 +11,10 @@ public class Arbol {
         return raiz == null;
     }
 
-    public void insertar(Dato dato) 
+    public void insertar(NodoDatoLD nuevo) 
     {
-        NodoArbol nuevo_nodo = new NodoArbol(dato);
+        NodoArbol nuevo_nodo = new NodoArbol(nuevo.informacion);
+        
         if (vacio())
         {
             raiz = nuevo_nodo;
